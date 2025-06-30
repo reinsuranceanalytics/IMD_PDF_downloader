@@ -4,7 +4,10 @@ import requests
 
 
 def log_message(message):
-    with open("C:\\IMD_Rainfall_PDFs\\download_log.txt", "a") as log:
+    log_dir = "./downloads"
+    os.makedirs(log_dir, exist_ok=True)
+    log_path = os.path.join(log_dir, "download_log.txt")
+    with open(log_path, "a") as log:
         log.write(f"{datetime.datetime.now()}: {message}\n")
 
 
@@ -44,7 +47,7 @@ if __name__ == "__main__":
     # today = datetime.date(2024, 6, 26)  # Uncomment to simulate past date
 
     # Folder to save downloaded files
-    download_folder = "C:\\IMD_Rainfall_PDFs"
+    download_folder = "./downloads"
 
     # Call main function
     download_imd_rainfall_report(today, download_folder)
